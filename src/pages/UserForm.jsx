@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
+import  axios  from "axios";
 
 export default function UserForm() {
   const navigate = useNavigate();
@@ -26,9 +27,9 @@ export default function UserForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("https://heklo.onrender.com/project", form);
+      await axios.post("https://heklo.onrender.com/project", formData);
       alert("Project details submitted successfully!");
-      setForm({
+      setFormData({
         clientName: "",
         projectName: "",
         budget: "",
@@ -41,6 +42,7 @@ export default function UserForm() {
         status: "Pending"
       });
     } catch (error) {
+        console.log(error)
       alert("Error submitting project details");
     }
     };
